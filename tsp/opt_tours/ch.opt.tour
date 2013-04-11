@@ -1,0 +1,17 @@
+NAME : ch.opt.tour
+COMMENT : Optimal tour for ch.tsp (350.259847681)
+TYPE : Tour
+DIMENSON : 10
+TOUR_SECTION
+1
+10
+3
+8
+2
+5
+4
+9
+7
+6
+-1
+EOF

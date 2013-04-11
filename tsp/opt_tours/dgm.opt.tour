@@ -1,0 +1,17 @@
+NAME : dgm.opt.tour
+COMMENT : Optimal tour for dgm.tsp (67.3756985895)
+TYPE : Tour
+DIMENSON : 10
+TOUR_SECTION
+6
+3
+7
+4
+8
+1
+10
+5
+9
+2
+-1
+EOF

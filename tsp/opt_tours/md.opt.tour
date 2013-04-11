@@ -1,0 +1,17 @@
+NAME : md.opt.tour
+COMMENT : Optimal tour for md.tsp (63.3430059512)
+TYPE : Tour
+DIMENSON : 10
+TOUR_SECTION
+1
+10
+9
+8
+6
+7
+5
+4
+3
+2
+-1
+EOF

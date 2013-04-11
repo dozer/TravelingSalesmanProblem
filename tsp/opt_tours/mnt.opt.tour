@@ -1,0 +1,17 @@
+NAME : mnt.opt.tour
+COMMENT : Optimal tour for mnt.tsp (135.659338634)
+TYPE : Tour
+DIMENSON : 10
+TOUR_SECTION
+1
+5
+9
+6
+8
+3
+10
+2
+4
+7
+-1
+EOF

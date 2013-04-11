@@ -1,0 +1,17 @@
+NAME : d.opt.tour
+COMMENT : Optimal tour for d.tsp (51.8939569281)
+TYPE : Tour
+DIMENSON : 10
+TOUR_SECTION
+1
+10
+9
+8
+7
+6
+5
+4
+3
+2
+-1
+EOF

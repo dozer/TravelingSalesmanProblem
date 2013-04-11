@@ -1,0 +1,17 @@
+NAME : cfr.opt.tour
+COMMENT : Optimal tour for cfr.tsp (76.8369126086)
+TYPE : Tour
+DIMENSON : 10
+TOUR_SECTION
+1
+2
+9
+8
+10
+6
+7
+5
+4
+3
+-1
+EOF

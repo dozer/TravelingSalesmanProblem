@@ -1,0 +1,18 @@
+NAME: PW10
+TYPE: TSP
+COMMENT: 10-city problem, Matt Petro, Drew Whittaker
+DIMENSION: 10
+EDGE_WEIGHT_TYPE: EUC_2D
+NODE_COORD_SECTION
+1 1 1
+2 5 3
+3 2 7
+4 3 12
+5 5 7
+6 5 10
+7 8 7
+8 9 11
+9 11 5
+10 12 1
+EOF
+

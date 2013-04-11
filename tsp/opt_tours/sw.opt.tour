@@ -1,0 +1,17 @@
+NAME : sw.opt.tour
+COMMENT : Optimal tour for sw.tsp (553.663595714)
+TYPE : Tour
+DIMENSON : 10
+TOUR_SECTION
+2
+10
+4
+7
+6
+1
+3
+8
+5
+9
+-1
+EOF

@@ -1,0 +1,17 @@
+NAME : skc.opt.tour
+COMMENT : Optimal tour for skc.tsp (41.6898458546)
+TYPE : Tour
+DIMENSON : 10
+TOUR_SECTION
+1
+2
+3
+5
+6
+8
+10
+9
+7
+4
+-1
+EOF
