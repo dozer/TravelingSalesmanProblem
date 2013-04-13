@@ -1,0 +1,13 @@
+FileName	# Cities	NN Tour Cost	Optimal Cost	NN Time (ms)
+-------------	-------------	--------------	-------------	-------------
+a280		280		712.526603			5
+berlin52	52		
+ch150		150
+eil51		51
+eil76		76
+kroA100		100
+kroC100		100
+pcb442		442
+pr1002		1002
+pr2392		2392
+pr76		76
