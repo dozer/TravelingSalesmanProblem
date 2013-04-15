@@ -84,38 +84,6 @@ def nearestNeighbor(cities):
 	#Return the tour
 	return tour
 
-#A function to write the output of a tour to a file in a specified format
-def toFile(tour):
-    loc = raw_input('Enter the location where you would like to save the tour:\n') 
-    fname = cityFile.name
-    #Index for the last file separator to get ONLY the file name not its path
-    sep_index = 0
-    #Linux/OSX files use /'s to separate dirs so get the position of the last one in the name
-    if '/' in fname:
-        sep_index = fname.rindex('/')+1
-    #Windows files use \'s to separate dirs so get the position of the last one in the name
-    if '\\' in fname:
-        sep_index = fname.rindex('\\')+1
-    #Create the header for the output file
-    header = ('NAME : ' + str(fname[sep_index:-4]) + '.opt.tour\n'
-          'COMMENT : Optimal tour for ' + str(fname[sep_index:]) + ' (' + str(tour[1]) + ')\n'
-          'TYPE : Tour\n'
-          'DIMENSON : ' + str(len(tour[0])) + '\n'
-          'TOUR_SECTION\n')
-    #Create the trailer for the output file
-    trailer = "-1\nEOF\n"
-    #Create the output file and write the results to it
-    try:
-        f = open(loc,'w')
-        f.write(header)
-        for city in tour[0]:
-            f.write(str(city) + '\n')
-        f.write(trailer)
-        f.close()
-        print 'Successfully saved tour data to: ' + loc
-    except Exception as e:
-        print loc + ' could not be written to: ' + str(e) 
-
 #-------------------The actual script begins here-----------------------
 cities = []
 cityFile = getFile()
@@ -128,4 +96,3 @@ finish = time.time()
 print 'The optimum tour is: %s (%f)' % (opt_tour[0], opt_tour[1])
 print 'There are %d cities in this tour.' % (len(opt_tour[0]))
 print 'This solution took %0.3f seconds to calculate.' % (finish-start)
-toFile(opt_tour)
