@@ -1,9 +1,10 @@
 #!/usr/local/bin/python
 
-#Traveling Salesman Solution using NearestNeighbor Algorithm
+#Traveling Salesman Solution using 2-opt Algorithm
 #Scott Stevenson, Jack Koppenaal, John Costantino
 
 import time, itertools, math, exceptions, random
+from optparse import OptionParser
 
 #Get the city file
 def getFile():
@@ -42,27 +43,10 @@ def getWeight(perm):
 #Function to work with both float and int inputs
 def num(s):
 	try:
+		#If there is an error it is due to precision loss
 		return int(s)
 	except exceptions.ValueError:
 		return float(s)
-
-#Get the cities from a specified city file
-#def getCities(cityFile):
-#	for line in cityFile:
-#		try:
-#			#Lines split by a space char will look like:
-#			#[ident, x-coord, y-coord]
-#			ident = line.split(' ')[0]
-#			x = line.split(' ')[1]
-#			y = line.split(' ')[2].strip('\n')
-#			#If the ident is not an int (not a city) skip it otherwise add it	
-#			if ident.isdigit():
-#				#Cities are just lists with values (almost a pseudo-class)
-#				city = [num(ident), num(x), num(y)]
-#				cities.append(city)
-#		except:
-#			#The ident was not an int so we skip (pass) it and move on to the next
-#			print "exception adding city"
 
 #Get the cities from a specified city file
 def getCities(cityFile):
@@ -80,38 +64,56 @@ def getCities(cityFile):
 			#The ident was not an int so we skip (pass) it and move on to the next
 			print "exception adding city"
 
-def two_opt(cities):
-	curbest = [[], float("inf")]
+#Calculate the 'best' tour for a set of cities using 2-opt
+def two_opt(cities, numrounds, numiters):
+	#Create the initial 1...N permutation and find its weight
+	curbest = [[], None]
 	for city in cities:
 		curbest[0].append(city[0])
 	curbest[1] = getWeight(curbest[0])
-	next = [curbest[0][:], None]
+	#Create the 'next' tour
+	#[:] makes a copy of the array in curbest[0]
+	next = [curbest[0][:], curbest[1]]
 
-  	for x in range(0,1):
-  		for x in range(0,(len(cities)**3)/16):
-  			#next = curbest
+  	for x in range(0, numrounds):
+  		for x in range(0, numiters):
+  			#Pick 2 random edges
   			num1 = random.randint(0, len(cities)-1)
   			num2 = (num1 + random.randint(0, len(cities)-2))%len(cities)
-  			#Swap
+  			#Swap the edges and get the new weight
   			next[0][num1], next[0][num2] = next[0][num2], next[0][num1]
   			next[1] = getWeight(next[0])
-  			print "curbest:"
-  			print curbest[1]
-  			print "next after:"
-  			print next[1]
+  			#If the new tour is better than the old tour, set new tour as current best
   			if next[1] < curbest[1]:
   				curbest = next
   	return curbest
 
-
-
 #-------------------The actual script begins here-----------------------
+#Add command line option parsing
+#Rounds and Iters are not required - defaults will be used if needed
+parser = OptionParser()
+parser.add_option("-r", "--rounds", dest = "rounds",
+					help = "The desired number of rounds.")
+parser.add_option("-i", "--iters", dest = "iters",
+					help = "The desired number of iterations (per round).")
+(options, args) = parser.parse_args()
+
 cities = []
 cityFile = getFile()
 getCities(cityFile)
+
+#Set the default values for rounds and iters
+rounds = 2
+iters = (len(cities)**3)/16
+#If the user provides values, use them
+if (options.rounds != None):
+	rounds = num(options.rounds)
+if (options.iters != None):
+	iters = num(options.iters)
+
 #Start the stopwatch
 start = time.time()
-opt_tour = two_opt(cities)
+opt_tour = two_opt(cities, rounds, iters)
 #Stop the stopwatch
 finish = time.time()
 print 'The optimum tour is: %s (%f)' % (opt_tour[0], opt_tour[1])
