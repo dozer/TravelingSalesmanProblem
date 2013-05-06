@@ -66,6 +66,8 @@ def getCities(cityFile):
 
 #Calculate the 'best' tour for a set of cities using 2-opt
 def two_opt(cities, numrounds, numiters):
+	#Initialize the total weight to be averaged to 0
+	results = 0
 	#Create the initial 1...N permutation and find its weight
 	curbest = [[], None]
 	for city in cities:
@@ -86,7 +88,10 @@ def two_opt(cities, numrounds, numiters):
   			#If the new tour is better than the old tour, set new tour as current best
   			if next[1] < curbest[1]:
   				curbest = next
-  	return curbest
+  		#Add the current best weight to results after each round
+  		results += curbest[1]
+  	#Return an arbitrary path and the average of all of the results of the rounds
+  	return [curbest[0], results/numrounds]
 
 #-------------------The actual script begins here-----------------------
 #Add command line option parsing
